@@ -35,6 +35,10 @@ class Captcha
         @operator = Operator.new(operator) 
     end
 
+    def string()
+        "#{@left.string} #{@operator.string} #{@right.string}"
+    end
+
     private def operand_builder(pattern, left, right)
         if is_string_integer(pattern)
             return IntegerOperand.new(left), StringOperand.new(right)

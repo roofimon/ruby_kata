@@ -80,4 +80,15 @@ describe Captcha do
             expect(@captcha.operator.string()).to eql '+'
         end
     end
+
+    context "string" do
+        it "should be 1 + One" do
+            @captcha = Captcha.new(1, 1, 1, 1)
+            expect(@captcha.string()).to eql '1 + One'
+        end 
+        it "should be 2 + One" do
+            @captcha = Captcha.new(1, 2, 1, 1)
+            expect(@captcha.string()).to eql '2 + One'
+        end 
+    end
 end
