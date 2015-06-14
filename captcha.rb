@@ -29,12 +29,13 @@ class StringOperand < Operand
 end
 
 class Captcha
-    attr_accessor :right, :left
+    attr_accessor :right, :left, :operator
     def initialize(pattern, left, operator, right)
         @left, @right = operand_builder(pattern, left, right) 
+        @operator = Operator.new(operator) 
     end
 
-    def operand_builder(pattern, left, right)
+    private def operand_builder(pattern, left, right)
         if is_string_integer(pattern)
             return IntegerOperand.new(left), StringOperand.new(right)
         else
@@ -42,7 +43,7 @@ class Captcha
         end
     end
 
-    def is_string_integer(pattern) 
+    private def is_string_integer(pattern) 
         pattern == 1 
     end
 end

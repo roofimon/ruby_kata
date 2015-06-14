@@ -73,4 +73,11 @@ describe Captcha do
             expect(@captcha.right.string()).to eql 'Two'
         end 
     end 
+
+    context "operator" do
+        it "should be +" do
+            @captcha = Captcha.new(FIRST_PATTERN, DUMMY_LEFT, 1, DUMMY_RIGHT)
+            expect(@captcha.operator.string()).to eql '+'
+        end
+    end
 end
