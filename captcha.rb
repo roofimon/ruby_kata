@@ -9,19 +9,19 @@ class Operator
     end
 end
 
-class IntegerOperand
+class Operand
     def initialize(value)
         @value = value
     end
+end
+
+class IntegerOperand < Operand
     def string()
        @value.to_s 
     end
 end
 
-class StringOperand
-    def initialize(value)
-        @value = value
-    end
+class StringOperand < Operand
     def string()
         number_string = ["One","Two","Three","Four","Five","Six","Seven","Eight","Nine"]
         number_string[@value-1]    
