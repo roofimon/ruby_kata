@@ -31,23 +31,25 @@ end
 class Captcha
     attr_accessor :right, :left, :operator
     def initialize(pattern, left, operator, right)
-        @left, @right = operand_builder(pattern, left, right) 
+        @left, @right = OperandBuilder.build(pattern, left, right) 
         @operator = Operator.new(operator) 
     end
 
     def string()
         "#{@left.string} #{@operator.string} #{@right.string}"
     end
+end
 
-    private def operand_builder(pattern, left, right)
-        if is_string_integer(pattern)
+class OperandBuilder
+    def self.build(pattern, left, right)
+        if self.is_string_integer(pattern)
             return IntegerOperand.new(left), StringOperand.new(right)
         else
             return StringOperand.new(left), IntegerOperand.new(right)
         end
     end
 
-    private def is_string_integer(pattern) 
+    def self.is_string_integer(pattern) 
         pattern == 1 
     end
 end
